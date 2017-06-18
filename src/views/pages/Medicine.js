@@ -14,10 +14,10 @@ class Medicine extends Component {
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(this.props.libraries);
+    this.dataSource = ds.cloneWithRows(this.props.medi);
   }
 
-  renderRow(medi) {
+  renderRow(medi){
     return (
       <MedicineList
         medi = {medi}
@@ -31,6 +31,7 @@ class Medicine extends Component {
 
   render() {
     const { container, direction, text, seg, icon } = styles;
+    const {navigation} = this.props;
     return (
     <View style={{flex:1}}>
           <View style={[container, direction]}>
@@ -42,7 +43,7 @@ class Medicine extends Component {
           <ListView
               style={{ backgroundColor: 'white' }}
               dataSource={this.dataSource}
-              renderRow={this.renderRow}
+              renderRow={ (medi) => {return(<MedicineList medi={medi} navigation={navigation}/>);} }
           />
     </View>
     );
@@ -72,7 +73,7 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-  return { libraries: state.libraries }; //let state.libraries turn to props of Medicine 
+  return { medi: state.medi }; //let state.libraries turn to props of Medicine 
 };
 
 // export default Medicine;

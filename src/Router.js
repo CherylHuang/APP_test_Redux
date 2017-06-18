@@ -113,7 +113,6 @@ export const MedicineStack = StackNavigator({
       })
     },
   },
-  MedicineList:{screen:MedicineList}
 },
 {
   // headerMode: 'none',

@@ -10,9 +10,6 @@ import { connect } from 'react-redux';
 
 import { ListItem, Icon } from 'react-native-elements';
 
-gotopage2 = (medi) => {
-    this.porps.navigation.navigate('MedicineDetails', { ...medi });
-}
 
 class MedicineList extends Component {
 
@@ -33,7 +30,7 @@ class MedicineList extends Component {
                 }}
               subtitle={medi.effect}
               subtitleStyle={{fontSize:12}}
-              onPress={() => navigation.navigate('MedicineDetails', { ...medi }) }
+              onPress={() => navigation.navigate('MedicineDetails', {...medi}) }
             />
         );
     }
