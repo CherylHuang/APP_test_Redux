@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import { View, Image, Text, ScrollView } from 'react-native';
 import { List, ListItem, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
 
-import medicine from '../../reducers/json/medicine.json';
+// import medi from '../../reducers/json/medicine.json';
 
 // Make a component
 class MedicineEdit extends Component {
-  state = { medicine: [] };
+  // state = { medi: [] };
 
-  componentWillMount() {
-    this.setState({ medicine });
-  }
+  // componentWillMount() {
+  //   this.setState({ medi });
+  // }
 
   render() {
         const { flex, img, icon, icon_pos, title, righttitle } = styles;
+        const { medi } = this.props;
     return (
       <ScrollView>
           <View style={flex}>
-            <Image source={{uri: 'http://img01.ibnlive.in/ibnlive/uploads/875x584/jpg/2016/12/medicines1.jpg'}} 
+            <Image source={{uri: medi.image }} 
             style={img}
             />
             <View style={icon_pos}>
@@ -33,7 +35,7 @@ class MedicineEdit extends Component {
             title={
             <View style={{flexDirection:'row'}}>
                 <Text style={title}>  名稱   </Text>
-                <Text style={{fontSize:17, color: '#bdc6cf'}}>感冒藥 </Text>
+                <Text style={{fontSize:17, color: '#bdc6cf'}}>{medi.title} </Text>
                 <Icon name='edit' color='#517fa4' onPress={()=>{}} />
             </View>
                 }
@@ -42,7 +44,7 @@ class MedicineEdit extends Component {
           <ListItem
             title="分類"
             titleStyle={title}
-            rightTitle={'內服/西藥/膠囊'}
+            /*rightTitle={`${medi.kind.IO}/${medi.kind.WE}/${medi.kind.type}`}*/
             rightTitleStyle={righttitle}
           />
           <ListItem
@@ -54,29 +56,28 @@ class MedicineEdit extends Component {
           <ListItem
             title="效用"
             titleStyle={title}
-            rightTitle={'咳嗽 流鼻水'}
+            rightTitle={medi.effect}
             rightTitleStyle={righttitle}
           />
           <ListItem
-            key={this.state.medicine.kind}
             title="副作用"
             titleStyle={title}
-            rightTitle={'嗜睡'}
+            rightTitle={medi.subeffect}
             rightTitleStyle={righttitle}
           />
           <ListItem
-            key={this.state.medicine.kind}
             title="注意事項"
+            rightTitle={medi.warn}
             titleStyle={title}
           />
           <ListItem
-            key={this.state.medicine.kind}
             title="本次服用原因"
+            rightTitle={medi.reason}
             titleStyle={title}
           />
           <ListItem
-            key={this.state.medicine.kind}
             title="備註"
+            rightTitle={medi.other}
             titleStyle={title}
           />
         </List>
@@ -116,4 +117,11 @@ const styles = {
   }
 }
 
-export default MedicineEdit;
+// export default MedicineEdit;
+
+const mapStateToProps = state => {
+  return { medi: state.medi }; //let state.libraries turn to props of Medicine 
+};
+
+// export default Medicine;
+export default connect(mapStateToProps)(MedicineEdit);

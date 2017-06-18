@@ -1,11 +1,4 @@
 import React, { Component } from 'react';
-import {
-    View,
-    Text,
-    LayoutAnimation,
-    TouchableWithoutFeedback,
-    UIManager
-} from 'react-native';
 import { connect } from 'react-redux';
 
 import { ListItem, Icon } from 'react-native-elements';
