@@ -9,8 +9,36 @@ import { connect } from 'react-redux';
 class MedicineEdit extends Component {
   // state = { medi: [] };
 
-  // componentWillMount() {
-  //   this.setState({ medi });
+  // componentWillMount(newProps) {
+    // this.setState({ medi });
+  // }
+
+  componentWillReceiveProps(nextProps) {
+    let data = nextProps.data;
+    if (nextProps.data !== this.props.medi) {
+      // let data = this._getListViewData(nextProps.medi);
+      data = data.map((medicine) => {
+        return medicine;
+    });
+      this.setState({
+        medi: this.state.dataSource.cloneWithRowsAndSections(data)
+      })
+    }
+  }
+
+  //  _getListViewData(medi) {
+  //   let data = {};
+    
+  //   medi.map((patient) => {
+  //     let section = patient.lastName.charAt(0);
+  //     if (sectionIds.indexOf(section) === -1) {
+  //       sectionIds.push(section);
+  //       data[section] = [];
+  //     }
+  //     data[section].push(patient);
+  //   });
+
+  //   return data;
   // }
 
   render() {

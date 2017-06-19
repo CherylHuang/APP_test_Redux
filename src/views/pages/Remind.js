@@ -57,6 +57,7 @@ handlePressCheckedBox = (checked) => {
      this.setState({
        isChecked: checked,
      });
+    //  console.log(this.state.isChecked);
 }
 
 

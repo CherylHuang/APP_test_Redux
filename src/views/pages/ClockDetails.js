@@ -20,11 +20,11 @@ const ClockDetails = (props) => {
           amount2,
           amountWord2,
           img2,
-          subeffect2
+          subeffect2,
+          isChecked
   } = props.navigation.state.params;
 
     const { icon, AMPM, time, contain, directionRow, directionCol } = styles;
-
     return (
       <ScrollView>
         <View style={directionCol}>

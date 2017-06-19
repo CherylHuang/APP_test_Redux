@@ -9,7 +9,6 @@ import { AppWithNavigationState } from './Router';
 
 //
 import { LoginStack, TabRouter } from './Router';
-import Remind from './views/pages/Remind';
 
 class App extends Component {
 
@@ -27,9 +26,8 @@ class App extends Component {
   render() {
     return (
         <Provider store={createStore(reducers)}>
-          <TabRouter />
-          {/*<LoginStack />*/}
-          {/*<Remind />*/}
+          {/*<TabRouter />*/}
+          <LoginStack />
           {/*<AppWithNavigationState />*/}
         </Provider>
     );

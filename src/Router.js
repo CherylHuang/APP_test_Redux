@@ -6,7 +6,9 @@ import { Linking, ScrollView, Button, SegmentedControlIOS } from 'react-native';
 import Medicine from './views/pages/Medicine';
 import MedicineDetails from './views/pages/MedicineDetails';
 import MedicineEdit from './views/pages/MedicineEdit';
+import AddMedicine from './views/pages/AddMedicine';/////
 import MedicineList from './views/pages/MedicineList'; //////
+
 import Setting from './views/pages/Setting';
 import EditPassword from  './views/pages/EditPassword';
 import History from './views/pages/History';
@@ -66,7 +68,6 @@ export const MedicineStack = StackNavigator({
     navigationOptions: {
       header: ({navigate}) => ({
         title: '藥物管理',
-        
         right:(
           <DeleteAddIcon />
         ),
@@ -102,6 +103,22 @@ export const MedicineStack = StackNavigator({
     navigationOptions: {
       header: ({ state }) => ({
         title: '編輯藥物',
+        tintColor:"#517fa4",
+        right:(
+          <Button
+          title='完成'
+          color = "#517fa4"
+          /*onPress={() => navigate('EditClock')}*/
+          />
+        ),
+      })
+    },
+  },
+  AddMedicine: {
+    screen: AddMedicine,
+    navigationOptions: {
+      header: () => ({
+        title: '新增藥物',
         tintColor:"#517fa4",
         right:(
           <Button
