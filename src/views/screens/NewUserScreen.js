@@ -1,8 +1,26 @@
 import React, { Component } from 'react';
 import { View, Picker, ActivityIndicator, ScrollView, Text } from 'react-native';
 import * as firebase from 'firebase';
-
 import { FormLabel, FormInput, Button, CheckBox } from 'react-native-elements';
+
+const styles = {
+  formStyle: {
+    marginTop: 50
+  },
+  pickerStyle:{
+    marginTop:-30,
+    marginBottom:-30
+  },
+  textCancel:{
+    color:'#bbbbbb',
+    textDecorationLine:'underline',
+    alignSelf:"center",
+    fontSize:15,
+    marginTop:30,
+    marginBottom:50
+  }
+};
+
 
 // Make a component
 class NewUserScreen extends Component {
@@ -35,55 +53,54 @@ class NewUserScreen extends Component {
     }
   }
 
-  renderButton() {
+  renderButton(navigation) {
     if (this.state.saving) {
       return <ActivityIndicator size='large' style={{marginTop:30}} />;
     }
 
     return (
       <Button
-        title='Sign up'
-        onPress={this.onSaveInfo}
+        title='建立並登入'
         backgroundColor='#4AAF4C'
+        borderRadius={5}
+        fontSize={18}
         buttonStyle = {{marginTop:30}}
-      />
+        onPress={() => this.props.navigation.dispatch({ type: 'Login' })}
+        />
     );
   }
 
-  onCancel = () => {
-    this.props.navigation.navigate('LoginScreen');
-  }
 
   render() {
-    console.log(this.state);
+    const navigation = this.props.navigation;
     return (
       <ScrollView>
       <View style={styles.formStyle}>
-        <FormLabel>Email</FormLabel>
+        <FormLabel labelStyle = {{fontSize:15}}>帳號信箱</FormLabel>
         <FormInput
           placeholder='user@email.com'
           autoCorrect={false}
           autoCapitalize='none'
           keyboardType='email-address'
-          onChangeText={email => this.setState({ email })}
+          /*onChangeText={email => this.setState({ email })}*/
         />
-        <FormLabel>Password</FormLabel>
+        <FormLabel labelStyle = {{fontSize:15}}>密碼</FormLabel>
           <FormInput
             secureTextEntry
             autoCorrect={false}
             autoCapitalize='none'
             placeholder='password'
             value={this.state.password}
-            onChangeText={password => this.setState({ password })}
+            /*onChangeText={password => this.setState({ password })}*/
           />
 
-        {this.renderButton()}
+        {this.renderButton(navigation)}
 
-        <Text
+          <Text
            style={styles.textCancel}
-           onPress={this.onCancel}>
-                Cancel
-           </Text>
+           onPress={ () => this.props.navigation.navigate('Login') }>
+                取消
+          </Text>
 
       </View>
       </ScrollView>
@@ -91,22 +108,5 @@ class NewUserScreen extends Component {
   }
 }
 
-const styles = {
-  formStyle: {
-    marginTop: 50
-  },
-  pickerStyle:{
-    marginTop:-30,
-    marginBottom:-30
-  },
-  textCancel:{
-    color:'#bbbbbb',
-    textDecorationLine:'underline',
-    alignSelf:"center",
-    fontSize:15,
-    marginTop:30,
-    marginBottom:50
-  }
-};
 
 export default NewUserScreen;
